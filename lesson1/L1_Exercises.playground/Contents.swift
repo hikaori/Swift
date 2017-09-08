@@ -76,8 +76,6 @@ for (key, value) in dictionary {
         MonkyStrResult = MonkyStrResult + " " + replaceStr
     }
 }
-print(MonkyStrResult)
-
 
 //: ### Exercise 8
 //: Josie has been saving her pennies and has them all counted up. Write a program that, given a number of pennies, prints out how much money Josie has in dollars and cents.
