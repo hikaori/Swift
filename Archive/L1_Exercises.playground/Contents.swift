@@ -61,27 +61,46 @@ var output: String = ""
 
 var newestString = sillyMonkeyString
 
+var strSprit = newestString.characters.split{$0 == " "}.map(String.init)
+var MonkyStrResult = ""
+
+for (key, value) in dictionary {
+//    print("\(key) -> \(value)")
+    for var replaceStr in strSprit {
+        //    print("HEY"+replaceStr)
+        
+        if(replaceStr == key){
+            replaceStr = value
+        }
+//        print(replaceStr)
+        MonkyStrResult = MonkyStrResult + " " + replaceStr
+    }
+}
+print(MonkyStrResult)
 
 
 //: ### Exercise 8
 //: Josie has been saving her pennies and has them all counted up. Write a program that, given a number of pennies, prints out how much money Josie has in dollars and cents.
 // Example
 let numOfPennies = 567
+
+var result : Float = Float(numOfPennies) / 100.0
+print("$\(result)")
 //desired output = "$5.67"
 //: # Let or Var?
 import UIKit
 import Foundation
 //: ### Exercise 9
 //: Below is the code to find all the numbers present in an array, convert them to Ints, and calculate their sum. Have a look at the entities declared below: array, sum, and intToAdd. Think about whether each should be a constant or a variable and choose whether to declare them with let or var. When you're finished uncomment the code and see if the compiler agrees with your choices!
-// let or var array = ["A", "13", "B","5","87", "t", "41"] // TODO: Choose constant or variable
-// let or var sum = 0 // TODO: Choose constant or variable
-// for string in array {
-//     if Int(string) != nil {
-//         let or var intToAdd = Int(string)! // TODO: Choose constant or variable
-//         sum += intToAdd
-//     }
-// }
-// print(sum)
+ let array = ["A", "13", "B","5","87", "t", "41"] // TODO: Choose constant or variable
+ var sum = 0 // TODO: Choose constant or variable  //necessary to be immutable => var
+ for string in array {
+     if Int(string) != nil {
+         let intToAdd = Int(string)! // TODO: Choose constant or variable
+         sum += intToAdd
+     }
+ }
+ print(sum)
 //: ### Exercise 10
 //: For each of the following pairs, choose whether to declare a constant or a variable.
 //:
@@ -91,18 +110,20 @@ import Foundation
 let summitElevation: Int
 var currentElevation: Int
 //: 10a) Imagine you are writing a quiz app, and you need to program a timer that will stop a quiz after 20 min. Declare four entities: startTime, currentTime, maximumTimeAllowed, and timeRemaining. Don't worry about encoding their values.
-
+let startTime: Int
+var currentTime : Int //necessary to be immutable => var
+let maximumTimeAllowed :Int
+var timeRemaining:Int //necessary to be immutable => var
 //: 10b) Imagine you are writing an app for a credit card company. Declare two entities: creditLimit and balance.
+let creditLimit: Int //necessary to be immutable => var
+var balance: Int
+
 //: ### Exercise 11
 //: Below is the code to reverse a string. Have a look at the entities declared: stringToReverse and reversedString. Choose whether to declare each with let or var. When you're finished uncomment the code and see if the compiler agrees with your choices!
-//let or var stringToReverse = "Mutable or Immutable? That is the question." //TODO:Choose let or var
-//let or var reversedString = "" //TODO:Choose let or var
-//for character in stringToReverse.characters {
-//    reversedString = "\(character)" + reversedString
-//}
-//print(reversedString, terminator: "")
-
-
-
-
+let stringToReverse = "Mutable or Immutable? That is the question." //TODO:Choose let or var
+var reversedString = "" //TODO:Choose let or var
+for character in stringToReverse.characters {
+    reversedString = "\(character)" + reversedString
+}
+print(reversedString, terminator: "")
 
