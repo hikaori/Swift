@@ -57,18 +57,19 @@ print(animalGroupsDict)
 
 // Removing items from a dictionary
 animalGroupsDict["crows"] = nil
-animalGroupsDict
+print(animalGroupsDict)
 
 // Updating a value
 animalGroupsDict["monkeys"] = "barrel"
 var group = animalGroupsDict.updateValue("gaggle", forKey: "geese")
-type(of: group)
+type(of: group) //whata is this?
 
 animalGroupsDict.updateValue("crash", forKey:"rhinoceroses")
 print(animalGroupsDict)
 
 //Retrieving the value for a particular key
 let groupOfWhales = animalGroupsDict["whales"]
+
 //: Why would the code below return an optional?
 //:
 //:     animalGroupsDict["whales"]
@@ -90,14 +91,20 @@ if let groupOfSasquatches = animalGroupsDict["Sasquatches"] {
 //: Literal syntax
 var cutlery: Set = ["fork", "knife", "spoon"]
 var flowers:Set<Character> = ["🌷","🌹","🌸"]
+print(cutlery)
+print(flowers)
 //: Initializer syntax
 var utensils = Set<String>()
 var trees = Set<Character>()
+
 //: Set operations: Insert, Remove, Count
 trees.insert("🌲")
 trees.insert("🌳")
 trees.insert("🌵")
+print(trees)
 
 trees.remove("🌵")
 trees.count
+
+print(trees)
 
