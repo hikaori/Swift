@@ -110,7 +110,6 @@ var studioAlbums = ["Led Zeppelin":1969, "Led Zeppelin II": 1969, "Led Zeppelin 
 var count = 0
 
 for (key, value) in studioAlbums {
-    var strkey:String = key
     if(key.range(of: "Led Zeppelin") != nil){
         count = count + 1
     }
