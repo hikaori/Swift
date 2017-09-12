@@ -8,9 +8,7 @@ import UIKit
 var cuteAnimals = [CuddlyCreature]()
 
 //: 1b) Initialize an array of 5 bools using array literal syntax.
-//let a = true
-//let b = true
-//cuteAnimals.append(false)
+let boolArray = [false, false, true, false, true]
 //: ## Array operations: count, insert, append, remove, retrieveWithSubscript
 
 //: ### Exercise 2
@@ -62,7 +60,7 @@ print(admitted[1],admitted[2])
 //: b) Initialize a dictionary using array literal syntax. The keys should be the Strings: "Anchovies", "Coconut", "Cilantro", "Liver"  and each value should be a Bool representing whether you like the food or not.
     var likeUnlikeFood = ["Anchovies":true, "Coconut":true,"Cilantro":false,"Liver":true]
 //: ## Dictionary operations: count, insert, remove, update, retrieve with subscript
-
+print("Exercise 9")
 //: ### Exercise 9
 //: Insert an entry for George H.W. Bush to the dictionary below.
 var presidentialPetsDict = ["Barack Obama":"Bo", "Bill Clinton": "Socks", "George Bush": "Miss Beazley", "Ronald Reagan": "Lucky"]
@@ -72,7 +70,10 @@ var presidentialPetsDict = ["Barack Obama":"Bo", "Bill Clinton": "Socks", "Georg
 
 
 presidentialPetsDict["George Bush"] = "Miss Beazley"
-print(presidentialPetsDict) //how can I manage order
+print(presidentialPetsDict) //how can I manage order -> dictionary dosent have order
+
+
+print("Exercise 10")
 //: ### Exercise 10
 //: Remove the entry for "George Bush" and replace it with an entry for "George W. Bush".
 presidentialPetsDict["George Bush"] = nil
@@ -80,29 +81,40 @@ presidentialPetsDict["George Bush"] = nil
 presidentialPetsDict.updateValue("Miss Beazley", forKey: "George W. Bush")
 
 print(presidentialPetsDict)
+
+print("Exercise 11")
 //: ### Exercise 11
 //: We've initialized a new dictionary of presidentialDogs with the entries from presidentialPets. Update the entry for Bill Clinton by replacing "Socks" the cat with "Buddy" the dog.
 var presidentialDogs = presidentialPetsDict
 presidentialDogs["Bill Clinton"] = "Buddy"
-print(presidentialDogs)
-print(presidentialPetsDict)
+print("presidentialDogs\(presidentialDogs)")
+print("presidentialPetsDict\(presidentialPetsDict)")
+
+print("Exercise 12")
 //: ### Exercise 12
 //: Use subscript syntax to fill in the println statement below and produce the following string: "Michele Obama walks Bo every morning." You'll need to retrieve a value from the presidentialDogs dictionary and unwrap it using if let.
 //print("Michele Obama walks \() every morning.")
 
-for (key, value) in presidentialPetsDict {
-    if(key == "Barack Obama"){
-        var value = presidentialPetsDict["Barack Obama"]
-//        if let value = presidentialPetsDict["Barack Obama"] {
-            print("Michele Obama walks \(value) every morning.")
-//        }
-//        else{
-//            print("nil")
-//        }
-    }
+//for (key, value) in presidentialPetsDict {
+//    if(key == "Barack Obama"){
+//        var value = presidentialPetsDict["Barack Obama"]
+////        if let value = presidentialPetsDict["Barack Obama"] {
+//            print("Michele Obama walks \(value) every morning.")
+////        }
+////        else{
+////            print("nil")
+////        }
+//    }
+//}
+
+if let michellesDog = presidentialDogs["Barack Obama"] {
+    print("Michelle Obama walks \(michellesDog) every morning.")
+} else {
+    print("Michelle Obama doesn't have a dog.")
 }
 
-//Q why need unwrapping?
+///  * why dosent need loop?
+///  * ->dictionary dosent have order so directory access the data with key or value.
 //: ### Exercise 13
 // How many studio albums did Led Zeppelin release?
 var studioAlbums = ["Led Zeppelin":1969, "Led Zeppelin II": 1969, "Led Zeppelin III": 1970, "Led Zeppelin IV": 1971, "Houses of the Holy":1973, "Physical Graffiti": 1975, "Presence":1976, "In Through the Out Door":1979, "Coda":1982]

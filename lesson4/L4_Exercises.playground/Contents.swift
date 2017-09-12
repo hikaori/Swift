@@ -41,16 +41,13 @@ var count = 0
 for (key, value) in rapperPhoneNumbers {
 //    if(value.range(of: "(415)") != nil){
     if(value.contains("(415)")){
-        count = count + 1
-        print(value)
-        value.replacingOccurrences(of: "(415)", with: "(510)")
-        print(value)
+        print(">>>\(rapperPhoneNumbers[key])")
+        rapperPhoneNumbers[key] = value.replacingOccurrences(of: "(415)", with: "(510)")
     }
 }
 
 let aString = "This is my string"
 let newString = aString.replacingOccurrences(of: " ", with: "+")
-print(count)
 print(newString)
 print(rapperPhoneNumbers)
 
