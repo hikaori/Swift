@@ -9,5 +9,9 @@
 import Cocoa
 
 class Player: NSObject {
-
+    let mark:String
+    init(mark:String) {
+        self.mark = mark
+    }
 }
+

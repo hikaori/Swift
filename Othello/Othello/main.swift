@@ -8,5 +8,15 @@
 
 import Foundation
 
-print("Hello, World!")
+print("WELCOM TO OTHELLO GAME")
 
+struct Player {
+    var mark : String
+    init(mark:String) {
+        self.mark = mark
+    }
+}
+
+var objPlayer = Player(mark: "O")
+
+print(objPlayer.mark)

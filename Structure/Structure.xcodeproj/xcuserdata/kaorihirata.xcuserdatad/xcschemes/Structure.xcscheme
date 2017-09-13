@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
-               BuildableName = "Othello"
-               BlueprintName = "Othello"
-               ReferencedContainer = "container:Othello.xcodeproj">
+               BlueprintIdentifier = "DC4510F91F68D68600DCE279"
+               BuildableName = "Structure"
+               BlueprintName = "Structure"
+               ReferencedContainer = "container:Structure.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
-            BuildableName = "Othello"
-            BlueprintName = "Othello"
-            ReferencedContainer = "container:Othello.xcodeproj">
+            BlueprintIdentifier = "DC4510F91F68D68600DCE279"
+            BuildableName = "Structure"
+            BlueprintName = "Structure"
+            ReferencedContainer = "container:Structure.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
-            BuildableName = "Othello"
-            BlueprintName = "Othello"
-            ReferencedContainer = "container:Othello.xcodeproj">
+            BlueprintIdentifier = "DC4510F91F68D68600DCE279"
+            BuildableName = "Structure"
+            BlueprintName = "Structure"
+            ReferencedContainer = "container:Structure.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
-            BuildableName = "Othello"
-            BlueprintName = "Othello"
-            ReferencedContainer = "container:Othello.xcodeproj">
+            BlueprintIdentifier = "DC4510F91F68D68600DCE279"
+            BuildableName = "Structure"
+            BlueprintName = "Structure"
+            ReferencedContainer = "container:Structure.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

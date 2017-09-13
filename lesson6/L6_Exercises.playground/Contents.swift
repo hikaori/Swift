@@ -60,69 +60,77 @@ class Peach {
         self.varieties = [Peach]()
     }
     
-    func ripen() -> String {
-        self.softness += 10
-        return "ripe"
-        print("11111")
+    func ripen(incleace:Int) -> String {
+        softness += incleace
+        return "ripen"
     }
-    public var description: String { return "Peach: \(val)" }
 }
+var Pech1 = Peach(variety: "Peach1",softness: 0)
+print(Pech1.softness)
+print(Pech1.ripen(incleace: 10))
+print(Pech1.softness)
 
-var a = (variety: "Peach", softness: 5)
-a.ripen(a)
+/// did I understand this '2b )Add an instance method ' means correctoly?
 
 //: __Problem 3__
 //:
 //: __3a.__
 //:Add the computed property, "cuddlability", to the class, FluffyDog. Cuddlability should be computed based on the values of the stored properties, fluffiness and droolFactor.
 //var theFluffiestDog = UIImage(named:"fluffyDog")!
-//class FluffyDog {
-//    let name: String
-//    let fluffiness: Int
-//    let droolFactor: Int
-//    var cuddlability: Int
-//    // this is the computed property!
-//    var cuddlability: Int {
-//        return droolFactor * fluffiness
-//    }
-//    
-//    init(name: String, fluffiness: Int, droolFactor: Int) {
-//        self.name = name
-//        self.fluffiness = fluffiness
-//        self.droolFactor = droolFactor
-//    }
-//    
-//    func chase(_ wheeledVehicle: String)-> String {
-//        return "Where are you going, \(wheeledVehicle)? Wait for me! No, don't go! I will catch you!"
-//    }
-//}
+class FluffyDog {
+    let name: String
+    let fluffiness: Int
+    let droolFactor: Int
+    // 3a Answer vvvvvvvv
+    var cuddlability:  Int {
+        get {
+            return (droolFactor + fluffiness)
+        }
+    }
+    // 3a Answer ^^^^^^^^
+    
+    init(name: String, fluffiness: Int, droolFactor: Int) {
+        self.name = name
+        self.fluffiness = fluffiness
+        self.droolFactor = droolFactor
+    }
+    
+    func chase(_ wheeledVehicle: String)-> String {
+        return "Where are you going, \(wheeledVehicle)? Wait for me! No, don't go! I will catch you!"
+    }
+}
 //: __3b.__
 //: Instantiate and initialize an instance of the class, FluffyDog. Use it to call the method, chase().
-//    var dog1 = FluffyDog.init(name: "Lucky", fluffiness: 5, droolFactor: 5)
-//    FluffyDog.chase(dog1)
+
+    var dog1 = FluffyDog(name: "Lucky", fluffiness: 5, droolFactor: 5)
+    print(dog1.chase("aaaaa"))
+
 //: __Problem 4__
 //:
 //: __4a.__
 //: Write an instance method, bark(), that returns a different string based on the value of the stored property, size.
-//enum Size: Int {
-//    case small
-//    case medium
-//    case large
-//}
-//
-//class ChattyDog {
-//    let name: String
-//    let breed: String
-//    let size: Size
-//    
-//    init(name: String, breed: String, size: Size) {
-//        self.name = name
-//        self.breed = breed
-//        self.size = size
-//    }
-//}
-////: __4b.__
-////: Create an instance of ChattyDog and use it to call the method, bark().
+enum Size: Int {
+    case small
+    case medium
+    case large
+}
+
+class ChattyDog {
+    let name: String
+    let breed: String
+    let size: Size
+    
+    init(name: String, breed: String, size: Size) {
+        self.name = name
+        self.breed = breed
+        self.size = size
+    }
+    
+    func bark() -> String{
+    }
+}
+//: __4b.__
+//: Create an instance of ChattyDog and use it to call the method, bark().
 
 //: __4c.__
 //: Rewrite the method, bark(), as a type method and rename it speak(). Call your type method to test it out.
@@ -131,31 +139,36 @@ a.ripen(a)
 //:
 //:__5a.__
 //: Write an initialization method for the House class below.
-//enum Quality {
-//    case poor, fair, good, excellent
-//}
-//
-//enum NaturalDisaster {
-//    case earthquake
-//    case wildfire
-//    case hurricane
-//}
+enum Quality {
+    case poor, fair, good, excellent
+}
 
-//class House {
-//    var numberOfBedrooms: Int = 0
-//    let location: Quality
-// 
-//    func willStayStanding(_ naturalDisaster:NaturalDisaster)-> Bool {
-//        switch naturalDisaster {
-//        case .earthquake:
-//            return true
-//        case .wildfire:
-//            return true
-//        case .hurricane:
-//            return false
-//        }
-//    }
-//}
+enum NaturalDisaster {
+    case earthquake
+    case wildfire
+    case hurricane
+}
+
+class House {
+    var numberOfBedrooms: Int = 0
+    let location: Quality
+ 
+    init(numberOfBedrooms:Int,location: Quality) {
+        self.numberOfBedrooms = numberOfBedrooms
+        self.location = location
+    }
+    
+    func willStayStanding(_ naturalDisaster:NaturalDisaster)-> Bool {
+        switch naturalDisaster {
+        case .earthquake:
+            return true
+        case .wildfire:
+            return true
+        case .hurricane:
+            return false
+        }
+    }
+}
 
 //: __5b.__
 //: Create an instance of the House class and use it to call the method, willStayStanding().  This method takes in a parameter of type NaturalDisaster and return a Bool indicating whether the house will stay standing in a given natural disaster.
