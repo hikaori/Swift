@@ -10,18 +10,18 @@ import Cocoa
 
 struct Player {
     
-    enum Storn: Int {
+    enum Chip: Int {
         case 🍏
         case 🐨
         case 🐷
     }
     
-    var stone : Int
+    var chip : Int
     
     
-    init(stone:String) {
-        let myStorn = Storn.🐨
-        self.stone = myStorn.rawValue
+    init(chip:String) {
+        let myChip = Chip.🐨
+        self.chip = myChip.rawValue
     }
     
 }

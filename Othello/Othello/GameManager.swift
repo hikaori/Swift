@@ -29,139 +29,144 @@ class GameManager: NSObject {
         return result
     }
     
-    func checkMove(board:Board)->Bool{
+    func checkMove(board b:Board)->Bool{
         var result = false
         actualRowIdx = Int(inputNum[0] - 1) // inputNum[0] - 1 => represent index of array position
         actualColIdx = Int(inputNum[1] - 1) // inputNum[1] - 1 => represent index of array position
-        if(board.boad[actualRowIdx][actualColIdx] == 0){
+        if(b.currentBoard[actualRowIdx][actualColIdx] == 0){
             result = true
         }
         return result
     }
 
 // flip Row section
-    func flipStornRow(board:Board,player:Player)->Void{
+    func flipChipRow(board b:Board,player p:Player)->Void{
         var recRow = actualRowIdx
         var recCol = actualColIdx
-        flipStornRowR(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipRowR(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         recRow = actualRowIdx // for back to base position
         recCol = actualColIdx // for back to base position
-        flipStornRowL(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipRowL(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         
 
     }
     
-    func flipStornRowR(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    func flipChipRowR(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
             recCol = recCol + 1
-            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaRup(board: b, player: p, recRow:&recRow,recCol:&recCol)
         }
     }
-    func flipStornRowL(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    func flipChipRowL(board b:Board, player p:Player, recRow: inout Int, recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
             recCol = recCol - 1
-            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaRup(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
     }
     
 
 // flip colm section
-    func flipStornCol(board:Board,player:Player)->Void{
+    func flipChipCol(board b:Board,player p:Player)->Void{
         var recRow = actualRowIdx
         var recCol = actualColIdx
-        flipStornColup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipColup(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         recRow = actualRowIdx // for back to base position
         recCol = actualColIdx // for back to base position
-        flipStornColdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipColdown(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
     }
-    func flipStornColup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    
+    func flipChipColup(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
             recRow = recRow - 1
-            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaRup(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
     }
-    func flipStornColdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    
+    func flipChipColdown(board b:Board, player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
             recRow = recRow + 1
-            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaRup(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
     }
     
 // flip diagonal section
-    func flipStornDia(board:Board,player:Player)->Void{
+    func flipChipDia(board b:Board,player p:Player)->Void{
         var recRow = actualRowIdx
         var recCol = actualColIdx
-        flipStornDiaRup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipDiaRup(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         recRow = actualRowIdx // for back to base position
         recCol = actualColIdx // for back to base position
-        flipStornDiaLdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipDiaLdown(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         recRow = actualRowIdx // for back to base position
         recCol = actualColIdx // for back to base position
-        flipStornDiaLup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipDiaLup(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
         recRow = actualRowIdx // for back to base position
         recCol = actualColIdx // for back to base position
-        flipStornDiaRdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        flipChipDiaRdown(board:b,player:p,recRow: &recRow!,recCol: &recCol!)
     }
     
     
-    func flipStornDiaRup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-            var n = board.boad[recRow][recCol]
-            if(n == 0){ // if find empty area then break.
-                return
-            }else{
-                board.boad[recRow][recCol] = player.stone
-                recRow = recRow - 1
-                recCol = recCol + 1
-                flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
-            }
-    }
-    func flipStornDiaLdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
-        if(n == 0){ // if find empty area then break.
+    func flipChipDiaRup(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void {
+        let n = b.currentBoard[recRow][recCol]
+        if (n == 0) { // if find empty area then break.
             return
-        }else{
-            board.boad[recRow][recCol] = player.stone
-            recRow = recRow + 1
-            recCol = recCol - 1
-            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        } else {
+            b.currentBoard[recRow][recCol] = p.chip
+            recRow = recRow - 1
+            recCol = recCol + 1
+            flipChipDiaRup(board: b, player: p, recRow:&recRow,recCol:&recCol)
         }
     }
-    func flipStornDiaRdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    
+    func flipChipDiaLdown(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
+            recRow = recRow + 1
+            recCol = recCol - 1
+            flipChipDiaLdown(board: b, player: p,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    
+    func flipChipDiaRdown(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            b.currentBoard[recRow][recCol] = p.chip
             recRow = recRow + 1
             recCol = recCol + 1
-            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaLdown(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
     }
-    func flipStornDiaLup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
-        var n = board.boad[recRow][recCol]
+    
+    func flipChipDiaLup(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        let n = b.currentBoard[recRow][recCol]
         if(n == 0){ // if find empty area then break.
             return
         }else{
-            board.boad[recRow][recCol] = player.stone
+            b.currentBoard[recRow][recCol] = p.chip
             recRow = recRow - 1
             recCol = recCol - 1
-            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+            flipChipDiaLdown(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
     }
 }

@@ -9,16 +9,16 @@
 import Cocoa
 
 class Board: CustomStringConvertible {
-    var boad:[[Int]]
+    var currentBoard:[[Int]]
     var rowCount: Int {
-        get {return boad.count - 1}
+        get {return currentBoard.count - 1}
     }
     var colCount: Int{
-        get{return boad[0].count - 1}
+        get{return currentBoard[0].count - 1}
     }
     
     init() {
-        self.boad = [[0,0,0,0,0,0,0,0],
+        self.currentBoard = [[0,0,0,0,0,0,0,0],
                      [0,0,0,0,0,0,0,0],
                      [0,0,0,0,0,0,0,0],
                      [0,0,0,1,2,0,0,0],
@@ -31,18 +31,15 @@ class Board: CustomStringConvertible {
     }
     
     public var description: String {
-        return "Board: \(boad)"
+        return "Board: \(currentBoard)"
     }
     
-    func displayBoard(bord:Board)->Void{
+    func displayBoard(board:Board)->Void{
         var line = 0
-//        let row = boad.count
-        //let colm = boad[0].count
-        //print("row:\(row) colm:\(colm)")
         
         print("-----------------------")
         for _ in 0...rowCount-1{
-            for sell in boad [ line ] {  // create one row
+            for sell in self.currentBoard[line] {  // create one row
                 print("| \(sell) | ", terminator: "")
             }
             print("")

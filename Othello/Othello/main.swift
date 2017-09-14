@@ -15,42 +15,46 @@ print("enter your choice ")
 let input = readLine()
 
 var b = Board.init()
-b.displayBoard(bord: b)
+b.displayBoard(board: b)
 
-var Player1 = Player(stone: "k")
-print(Player1.stone)
-var p2 = Player(stone: "k")
-print(p2.stone)
+var p1 = Player(chip: "k")
+print(p1.chip)
+var p2 = Player(chip: "k")
+print(p2.chip)
 
-print("make your move. input ex)1 2")
-let input2 = readLine()
+var gm = GameManager.init()
 
 
-var gManager = GameManager.init()
-if(gManager.getNumInput(input:input2) == "Empty"){
-    print("empty")
+func move(Gmanager gm:GameManager,board b:Board, player p: Player){
+    print("%d make your move. input ex)1 2",p)
+    let input = readLine()
+    
+    if(gm.getNumInput(input:input) == "Empty"){
+        print("empty")
+    }
+    if(gm.checkMove(board: b) == false){
+        print("can not put storn")
+    }
 }
-if(gManager.checkMove(board: b) == false){
-    print("can not put storn")
+func flipChip(manager gm:GameManager,board b: Board, player p: Player){
+    
+    b.currentBoard[gm.actualRowIdx][gm.actualColIdx] = p.chip
+    
+    // put and flip in row
+    gm.flipChipRow(board: b, player: p)
+    
+    // flip in col
+    gm.flipChipCol(board: b, player: p)
+    
+    //flip in diagonal
+    gm.flipChipDia(board: b, player: p)
+    
+    b.displayBoard(board: b)
+    
 }
 
-b.boad[gManager.actualRowIdx][gManager.actualColIdx] = Player1.stone
-
-// put and flip in row
-gManager.flipStornRow(board: b, player: Player1)
-
-// flip in col
-gManager.flipStornCol(board: b, player: Player1)
-
-//flip in diagonal
-gManager.flipStornDia(board: b, player: Player1)
-
-b.displayBoard(bord: b)
-
-
-
-
-
+move(Gmanager: gm, board: b, player: p1)
+flipChip(manager: gm,board: b, player: p1)
 
 
 switch input!{
