@@ -38,58 +38,130 @@ class GameManager: NSObject {
         }
         return result
     }
-    
-    func isExistMyStornInRow(board:Board,player:Player)->Bool{
-        var exist = false
-        existIndexOfStornInRow = board.boad[actualRowIdx].index(of: player.stone)
-        guard let unwrappedIndexStorn = existIndexOfStornInRow, unwrappedIndexStorn != nil else {
-            exist = false // if not found my storn(unwrappedIndexSrotn/existIndexOfStornInRow is nil)
-            return exist
-        }
-        exist = true // if found my storn then insert true in exist
-        return exist
-    }
 
-    func flipStorn(board:Board,player:Player)->Void{
-        // check row
+// flip Row section
+    func flipStornRow(board:Board,player:Player)->Void{
+        var recRow = actualRowIdx
+        var recCol = actualColIdx
+        flipStornRowR(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        recRow = actualRowIdx // for back to base position
+        recCol = actualColIdx // for back to base position
+        flipStornRowL(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
         
-        // check there is existed your storn or not.
-        let existIndexOfStornInRow = board.boad[actualRowIdx].index(of: player.stone)
-        guard let unwrappedIndexStorn = existIndexOfStornInRow, unwrappedIndexStorn != nil else {
-            return
-        }
-        // flip storn in the selected row. if selected index less than existed mystorn index, range will be from existed index to selected index -1. because if you replace same element , the index will be gone.
-        if(actualColIdx < unwrappedIndexStorn){
-            board.boad[actualRowIdx].replaceSubrange(Range(actualColIdx...(unwrappedIndexStorn - 1)), with: [Player1.stone,Player1.stone])
-        }
-        else{
-            board.boad[actualRowIdx].replaceSubrange(Range((unwrappedIndexStorn + 1)...actualColIdx), with: [Player1.stone,Player1.stone])
-        }
-        
-        // check colm
-        // check diagonal
+
     }
-    func flipStorn2(board:Board,player:Player,rec: inout Int)->Void{
-        if(actualColIdx > existIndexOfStornInRow){ //flip to left
-            var n = board.boad[actualRowIdx][rec]
-            if(n == 0){ // if find empty area then break.
-                return
-            }else{
-                board.boad[actualRowIdx][rec] = player.stone
-                rec = rec - 1
-                flipStorn2(board: b, player: Player1,rec:&rec)
-            }
+    
+    func flipStornRowR(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recCol = recCol + 1
+            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
         }
-        else{                                      //flip to right
-            var n = board.boad[actualRowIdx][rec]
+    }
+    func flipStornRowL(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recCol = recCol - 1
+            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    
+
+// flip colm section
+    func flipStornCol(board:Board,player:Player)->Void{
+        var recRow = actualRowIdx
+        var recCol = actualColIdx
+        flipStornColup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        recRow = actualRowIdx // for back to base position
+        recCol = actualColIdx // for back to base position
+        flipStornColdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+    }
+    func flipStornColup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recRow = recRow - 1
+            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    func flipStornColdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recRow = recRow + 1
+            flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    
+// flip diagonal section
+    func flipStornDia(board:Board,player:Player)->Void{
+        var recRow = actualRowIdx
+        var recCol = actualColIdx
+        flipStornDiaRup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        recRow = actualRowIdx // for back to base position
+        recCol = actualColIdx // for back to base position
+        flipStornDiaLdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        recRow = actualRowIdx // for back to base position
+        recCol = actualColIdx // for back to base position
+        flipStornDiaLup(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+        recRow = actualRowIdx // for back to base position
+        recCol = actualColIdx // for back to base position
+        flipStornDiaRdown(board:board,player:player,recRow: &recRow!,recCol: &recCol!)
+    }
+    
+    
+    func flipStornDiaRup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+            var n = board.boad[recRow][recCol]
             if(n == 0){ // if find empty area then break.
                 return
             }else{
-                board.boad[actualRowIdx][rec] = player.stone
-                rec = rec + 1
-                flipStorn2(board: b, player: Player1,rec:&rec)
+                board.boad[recRow][recCol] = player.stone
+                recRow = recRow - 1
+                recCol = recCol + 1
+                flipStornDiaRup(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
             }
-        
+    }
+    func flipStornDiaLdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recRow = recRow + 1
+            recCol = recCol - 1
+            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    func flipStornDiaRdown(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recRow = recRow + 1
+            recCol = recCol + 1
+            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
+        }
+    }
+    func flipStornDiaLup(board:Board,player:Player,recRow: inout Int,recCol: inout Int)->Void{
+        var n = board.boad[recRow][recCol]
+        if(n == 0){ // if find empty area then break.
+            return
+        }else{
+            board.boad[recRow][recCol] = player.stone
+            recRow = recRow - 1
+            recCol = recCol - 1
+            flipStornDiaLdown(board: b, player: Player1,recRow:&recRow,recCol:&recCol)
         }
     }
 }

@@ -19,6 +19,8 @@ b.displayBoard(bord: b)
 
 var Player1 = Player(stone: "k")
 print(Player1.stone)
+var p2 = Player(stone: "k")
+print(p2.stone)
 
 print("make your move. input ex)1 2")
 let input2 = readLine()
@@ -31,19 +33,21 @@ if(gManager.getNumInput(input:input2) == "Empty"){
 if(gManager.checkMove(board: b) == false){
     print("can not put storn")
 }
-print(gManager.isExistMyStornInRow(board: b, player: Player1))
 
-var rec = gManager.actualColIdx
 b.boad[gManager.actualRowIdx][gManager.actualColIdx] = Player1.stone
-gManager.flipStorn2(board: b, player: Player1,rec: &rec!)
 
-//b.boad[0][0]=Player1.stone
+// put and flip in row
+gManager.flipStornRow(board: b, player: Player1)
 
-//gManager.flipStorn(board: b, player: Player1)
+// flip in col
+gManager.flipStornCol(board: b, player: Player1)
+
+//flip in diagonal
+gManager.flipStornDia(board: b, player: Player1)
+
 b.displayBoard(bord: b)
 
-//print(gManager.checkMove(input:input2,board: b))
-//b.boad[1].replaceSubrange(Range(1...2), with: [Player1.stone,Player1.stone])
+
 
 
 
