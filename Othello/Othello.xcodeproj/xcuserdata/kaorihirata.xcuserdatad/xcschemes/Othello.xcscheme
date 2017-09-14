@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
+               BlueprintIdentifier = "DCE382031F68598A00A0FCD0"
                BuildableName = "Othello"
                BlueprintName = "Othello"
                ReferencedContainer = "container:Othello.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
+            BlueprintIdentifier = "DCE382031F68598A00A0FCD0"
             BuildableName = "Othello"
             BlueprintName = "Othello"
             ReferencedContainer = "container:Othello.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
+            BlueprintIdentifier = "DCE382031F68598A00A0FCD0"
             BuildableName = "Othello"
             BlueprintName = "Othello"
             ReferencedContainer = "container:Othello.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DC2D9A571F6840DD00D852F8"
+            BlueprintIdentifier = "DCE382031F68598A00A0FCD0"
             BuildableName = "Othello"
             BlueprintName = "Othello"
             ReferencedContainer = "container:Othello.xcodeproj">

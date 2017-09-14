@@ -84,7 +84,7 @@ class FluffyDog {
     // 3a Answer vvvvvvvv
     var cuddlability:  Int {
         get {
-            return (droolFactor + fluffiness)
+            return droolFactor + fluffiness
         }
     }
     // 3a Answer ^^^^^^^^
@@ -109,6 +109,30 @@ class FluffyDog {
 //:
 //: __4a.__
 //: Write an instance method, bark(), that returns a different string based on the value of the stored property, size.
+//enum Size: Int {
+//    case small
+//    case medium
+//    case large
+//}
+//
+//class ChattyDog {
+//    let name: String
+//    let breed: String
+//    let size: Size
+//    
+//    init(name: String, breed: String, size: Size) {
+//        self.name = name
+//        self.breed = breed
+//        self.size = size
+//    }
+//}
+
+
+//: __4b.__
+//: Create an instance of ChattyDog and use it to call the method, bark().
+
+//: __4c.__
+//: Rewrite the method, bark(), as a type method and rename it speak(). Call your type method to test it out.
 enum Size: Int {
     case small
     case medium
@@ -127,13 +151,18 @@ class ChattyDog {
     }
     
     func bark() -> String{
+        switch self.size.rawValue {
+        case 0:
+            return "small bark"
+        default:
+            return "bark defalt"
+        }
     }
 }
-//: __4b.__
-//: Create an instance of ChattyDog and use it to call the method, bark().
+var small = Size.small
+var dog10 = ChattyDog(name: "dog1", breed: "Corgi", size:small)
+dog10.bark()
 
-//: __4c.__
-//: Rewrite the method, bark(), as a type method and rename it speak(). Call your type method to test it out.
 
 //: __Problem 5__
 //:

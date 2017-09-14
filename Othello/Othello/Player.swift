@@ -8,10 +8,20 @@
 
 import Cocoa
 
-class Player: NSObject {
-    let mark:String
-    init(mark:String) {
-        self.mark = mark
+struct Player {
+    
+    enum Storn: Int {
+        case 🍏
+        case 🐨
+        case 🐷
     }
+    
+    var stone : Int
+    
+    
+    init(stone:String) {
+        let myStorn = Storn.🐨
+        self.stone = myStorn.rawValue
+    }
+    
 }
-
