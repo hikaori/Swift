@@ -20,23 +20,20 @@ class GameManager: NSObject {
     override init() {
     }
     
-    func getNumInput(input:String?)->String{
+    func getNumInput(input:String?)->Void{
         inputNum.removeAll()
-        var result = "Empty"
         guard let unwrappedInt = input, unwrappedInt != "" else{
-            return result
+            return
         }
         let arrayIndexNumber = unwrappedInt.components(separatedBy: " ") // run when input has value
         inputNum.append(Int(arrayIndexNumber[0])!)
         inputNum.append(Int(arrayIndexNumber[1])!)
-        result = "Get"
-        return result
     }
     
     func checkMove(board b:Board)->Bool{
         var result = false
-        actualRowIdx = Int(inputNum[0]) // inputNum[0] - 1 => represent index of array position
-        actualColIdx = Int(inputNum[1]) // inputNum[1] - 1 => represent index of array position
+        actualRowIdx = Int(inputNum[0])
+        actualColIdx = Int(inputNum[1])
         if(b.currentBoard[actualRowIdx][actualColIdx] == 0){
             result = true
         }
@@ -100,7 +97,6 @@ class GameManager: NSObject {
     }
     
     func flipChipRowRight(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
-//        print("::::\(recCol)")
         recCol = recCol + 1
 //        ("recCol\(recCol) ")
         let n = b.currentBoard[recRow][recCol] // flip from found index(exisded index).
@@ -147,7 +143,7 @@ class GameManager: NSObject {
             return
         }
         else if(n == p.playerChip){
-            print(recRow)
+//            print(recRow)
             flipChipColup(board:b, player:p,recRow: &recRow,recCol:&recCol)
         }
         else{
@@ -219,8 +215,10 @@ class GameManager: NSObject {
     }
     
     func flipChipDiaLdown(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void{
+        print(">>>\(recRow) \(recCol)")
         recRow = recRow + 1
         recCol = recCol - 1
+        print("after \(recRow) \(recCol)")
         let n = b.currentBoard[recRow][recCol] // flip from found index(exisded index).
         if(n == p.playerChip){ // flip finish if back to selected index
             return
@@ -293,10 +291,15 @@ class GameManager: NSObject {
         let n = b.currentBoard[recRow][recCol]
         if(n == 0 || n == 9){
             return
-        }else{
-            b.currentBoard[recRow][recCol] = p.playerChip
-            flipChipDiaLdown(board: b, player: p,recRow:&recRow,recCol:&recCol)
         }
+        else if(n == p.playerChip){
+            b.currentBoard[recRow][recCol] = p.playerChip
+            flipChipDiaRup(board: b, player: p,recRow:&recRow,recCol:&recCol)
+        }
+        else{
+            hasChipInDiaLdown(board: b, player: p,recRow:&recRow,recCol:&recCol)
+        }
+
     }
     func flipChipDiaRup(board b:Board,player p:Player,recRow: inout Int,recCol: inout Int)->Void {
         recRow = recRow - 1
@@ -311,31 +314,32 @@ class GameManager: NSObject {
     }
     
 /// game over section
-    func isGameOver(board b:Board,player p:Player)->Void{
+    func isGameOver(board b:Board,player p:Player)->Bool{
         if(b.iConOneCount == 0 && p.playerChip == 2){
             print("p2 \(p.playerIcon) win")
             gameOver = true
         }
-        else if(b.iConTwooCount == 0 && p.playerChip == 1){
+        else if(b.iConTwoCount == 0 && p.playerChip == 1){
             print("p1\(p.playerIcon) win")
             gameOver = true
         }
         else if(b.iConZeroCount == 0){
-            if(b.iConOneCount == 18 && b.iConTwooCount == 18){
+            gameOver = true
+            if(b.iConOneCount == 18 && b.iConTwoCount == 18){
                 print("Draw")
-                gameOver = true
             }
             else{
-                if(b.iConOneCount > b.iConTwooCount){
-                    print("p1 win!!  p1 : \(b.iConOneCount)  p2 : \(b.iConOneCount)")
+                if(b.iConOneCount > b.iConTwoCount){
+                    print("p1 win!!  p1 : \(b.iConOneCount)  p2 : \(b.iConTwoCount)")
                 }
                 else{
-                    print("p2 win!!  p1 : \(b.iConOneCount)  p2 : \(b.iConOneCount)")
+                    print("p2 win!!  p1 : \(b.iConOneCount)  p2 : \(b.iConTwoCount)")
                 }
             }
         }
         else{
             gameOver = false
         }
+        return gameOver
     }
 }

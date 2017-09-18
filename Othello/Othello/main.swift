@@ -38,6 +38,14 @@ var opponentIcon:String! = createOpponentIcon(p1: p1)
 var p2 = Player(chip: opponentIcon)
 print("p2's icon is \(p2.playerIcon)")
 
+//
+func makeRandomNum()->String{
+    let randomRow = Int(arc4random_uniform(8) + 1) // randome number from 1 to 8
+    let randomCol = Int(arc4random_uniform(8) + 1) // randome number from 1 to 8
+    let input = "\(randomRow) \(randomCol)"
+    return input
+}
+
 // creat board
 var b = Board.init()
 b.displayBoard(board: b)
@@ -50,7 +58,7 @@ func move(gameManager gm:GameManager,board b:Board, player p: Player){
     print("\(p.playerIcon) make your move. input ex)1 2")
     let input = readLine()
     
-    if(gm.getNumInput(input:input) == "Empty"){
+    if(gm.getNumInput(input:input) == nil){
         print("empty")
     }
 }
@@ -58,7 +66,7 @@ func move(gameManager gm:GameManager,board b:Board, player p: Player){
 
 
 func flipChip(gameManager gm:GameManager,board b: Board, player p: Player){
-    print("row:\(gm.actualRowIdx) low:\(gm.actualColIdx) p\(p.playerChip)")
+//    print("row:\(gm.actualRowIdx) low:\(gm.actualColIdx) p\(p.playerChip)")
     
 //     put and flip in row
     b.currentBoard[gm.actualRowIdx][gm.actualColIdx] = p.playerChip
@@ -90,7 +98,9 @@ case "1":
             move(gameManager: gm, board: b, player: p1)
         }
         flipChip(gameManager: gm,board: b, player: p1)
-        gm.isGameOver(board: b, player: p1)
+        if(gm.isGameOver(board: b, player: p1)){
+            break
+        }
         
         // movement p2
         move(gameManager: gm, board: b, player: p2)
@@ -99,31 +109,38 @@ case "1":
             move(gameManager: gm, board: b, player: p2)
         }
         flipChip(gameManager: gm,board: b, player: p2)
-        gm.isGameOver(board: b, player: p2)
+        if(gm.isGameOver(board: b, player: p2)){
+            break
+        }
     }
 case "2":
     print("you selected person vs computer")
     while(gm.gameOver == false){
-    // movement p1
-    move(gameManager: gm, board: b, player: p1)
-    while(gm.checkMove(board: b) == false){
-        print("can not put storn")
+        // movement p1
         move(gameManager: gm, board: b, player: p1)
-    }
-    flipChip(gameManager: gm,board: b, player: p1)
-    gm.isGameOver(board: b, player: p1)
-    
-    // movement computer
-    let randomRow = Int(arc4random_uniform(6) + 1) // randome number from 1 to 6
-    let randomCol = Int(arc4random_uniform(6) + 1) // randome number from 1 to 6
-    var input = "\(randomRow) \(randomCol)"
-    gm.getNumInput(input:input)
-    while(gm.checkMove(board: b) == false){
-        print("can not put storn")
-        move(gameManager: gm, board: b, player: p2)
-    }
-    flipChip(gameManager: gm,board: b, player: p2)
-    gm.isGameOver(board: b, player: p2)
+        while(gm.checkMove(board: b) == false){
+            print("can not put storn")
+            move(gameManager: gm, board: b, player: p1)
+        }
+        flipChip(gameManager: gm,board: b, player: p1)
+            if(gm.isGameOver(board: b, player: p1)){
+                break
+            }
+        
+        // movement computer
+//        let randomRow = Int(arc4random_uniform(6) + 1) // randome number from 1 to 6
+//        let randomCol = Int(arc4random_uniform(6) + 1) // randome number from 1 to 6
+//        var input = "\(randomRow) \(randomCol)"
+        
+        gm.getNumInput(input: makeRandomNum())
+        while(gm.checkMove(board: b) == false){
+            print("can not put storn")
+            gm.getNumInput(input: makeRandomNum())
+        }
+        flipChip(gameManager: gm,board: b, player: p2)
+        if(gm.isGameOver(board: b, player: p2)){
+            break
+        }
     }
 default:
     print("selected defalt")

@@ -22,20 +22,22 @@ class Board: CustomStringConvertible {
     }
     var iConZeroCount: Int = 0
     var iConOneCount : Int = 0
-    var iConTwooCount: Int = 0
+    var iConTwoCount: Int = 0
     var iConNineCount: Int = 0
     
     
     init() {
         self.currentBoard =
-                    [[9,9,9,9,9,9,9,9],
-                     [9,0,0,0,0,0,0,9],
-                     [9,0,0,0,0,0,0,9],
-                     [9,0,0,1,2,0,0,9],
-                     [9,0,0,2,1,0,0,9],
-                     [9,0,0,0,0,0,0,9],
-                     [9,0,0,0,0,0,0,9],
-                     [9,9,9,9,9,9,9,9],
+                    [[9,9,9,9,9,9,9,9,9,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,0,0,0,1,2,0,0,0,9],
+                     [9,0,0,0,2,1,0,0,0,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,0,0,0,0,0,0,0,0,9],
+                     [9,9,9,9,9,9,9,9,9,9],
 
         ]
     }
@@ -49,18 +51,18 @@ class Board: CustomStringConvertible {
         
         iConZeroCount = 0
         iConOneCount  = 0
-        iConTwooCount = 0
+        iConTwoCount = 0
         iConNineCount = 0
         
-        print("----------------------------------------------------------")
+        print("--------------------------------------------------------------------------")
         for _ in 0...rowCount{
             for num in self.currentBoard[line] {  // create one row
                 let iconNum = chipDictionaly[num]
-                countIcon(icon:num)
                 print("| \(iconNum!) | ", terminator: "")
+                countIcon(icon:num)
             }
             print("")
-            print("----------------------------------------------------------")
+            print("--------------------------------------------------------------------------")
             line += 1
         }
     }
@@ -72,7 +74,7 @@ class Board: CustomStringConvertible {
         case 1:
             iConOneCount  = iConOneCount  + 1
         case 2:
-            iConTwooCount = iConTwooCount + 1
+            iConTwoCount = iConTwoCount + 1
         case 9:
             iConNineCount = iConNineCount + 1
         default:
